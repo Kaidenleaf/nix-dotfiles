@@ -100,17 +100,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    mpv
-    kopia-ui
-    discord
-    kitty
-  ];
-
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
@@ -138,6 +127,9 @@
     enable = true;
     allowedTCPPorts = [ 8096 ]; # 8096 (HTTP), 8920 (HTTPS opcional)
   };
+  
+  services.tailscale.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

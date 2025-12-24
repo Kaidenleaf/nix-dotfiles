@@ -5,5 +5,9 @@
     vscode
     appimage-run
     qbittorrent
+    mpv
+    kopia-ui
+    discord
+    kitty
   ];
 }
