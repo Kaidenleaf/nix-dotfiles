@@ -91,11 +91,7 @@
   users.users.kaiden = {
     isNormalUser = true;
     description = "kaiden";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  kdePackages.kate
-    #  thunderbird
-    ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   # Install firefox.
@@ -122,12 +118,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes"];
   
   services.flatpak.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
-
   virtualisation.docker = {
+    enable = true;
     daemon.settings = {
       dns = [ "1.1.1.1" "8.8.8.8" ];
     };
