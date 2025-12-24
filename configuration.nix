@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./apps.nix
       ./plasma-fix.nix
+      ./filesystem.nix
     ];
 
   # Bootloader.
@@ -125,6 +126,12 @@
     enable = true;
     setSocketVariable = true;
   };
+
+  virtualisation.docker = {
+    daemon.settings = {
+      dns = [ "1.1.1.1" "8.8.8.8" ];
+    };
+  };
   
   programs.git = {
     enable = true;
@@ -135,6 +142,10 @@
   };
 
   zramSwap.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 8096 ]; # 8096 (HTTP), 8920 (HTTPS opcional)
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
