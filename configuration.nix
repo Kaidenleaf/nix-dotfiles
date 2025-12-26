@@ -64,6 +64,7 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics.enable = true;
+  programs.gamemode.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

@@ -9,5 +9,8 @@
     kopia-ui
     discord
     kitty
+    zed-editor
+    neovim
+    libreoffice-qt-fresh
   ];
 }
