@@ -7,10 +7,9 @@
     qbittorrent
     mpv
     kopia-ui
-    discord
-    kitty
     zed-editor
     neovim
+    ghostty
     libreoffice-qt-fresh
   ];
 }
