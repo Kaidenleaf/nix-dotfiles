@@ -1,9 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
+let 
+  unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
+in 
 {
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
-    vscode
+    unstable.vscode
     appimage-run
     qbittorrent
     mpv
@@ -17,3 +23,4 @@
     nix-direnv
   ];
 }
+
