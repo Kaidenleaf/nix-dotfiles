@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     vscode
     appimage-run
@@ -11,5 +12,6 @@
     neovim
     ghostty
     libreoffice-qt-fresh
+    oh-my-posh
   ];
 }

@@ -94,6 +94,7 @@
     isNormalUser = true;
     description = "kaiden";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+    shell = pkgs.zsh;
   };
 
   # Install firefox.
