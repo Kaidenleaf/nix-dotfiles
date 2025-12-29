@@ -13,5 +13,7 @@
     ghostty
     libreoffice-qt-fresh
     oh-my-posh
+    direnv
+    nix-direnv
   ];
 }
