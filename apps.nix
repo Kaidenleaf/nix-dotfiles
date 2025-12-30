@@ -21,6 +21,7 @@ in
     direnv
     nix-direnv
     distrobox
+    homebank
   ];
 }
 
