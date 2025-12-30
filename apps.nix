@@ -14,13 +14,13 @@ in
     qbittorrent
     mpv
     kopia-ui
-    zed-editor
     neovim
     ghostty
     libreoffice-qt-fresh
     oh-my-posh
     direnv
     nix-direnv
+    distrobox
   ];
 }
 
