@@ -104,6 +104,9 @@
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    noto-fonts-cjk-sans
+    inter
+    liberation_ttf
   ];
   
   nix.settings.experimental-features = [ "nix-command" "flakes"];
