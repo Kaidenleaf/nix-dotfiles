@@ -127,7 +127,7 @@
   zramSwap.enable = true;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 8096 ]; # 8096 (HTTP), 8920 (HTTPS opcional)
+    allowedTCPPorts = [ 8096 43211]; # 8096 (HTTP), 8920 (HTTPS opcional)
   };
   
   services.tailscale.enable = true;

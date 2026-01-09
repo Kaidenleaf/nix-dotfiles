@@ -22,6 +22,7 @@ in
     nix-direnv
     distrobox
     homebank
+    ffmpeg
   ];
 }
 
