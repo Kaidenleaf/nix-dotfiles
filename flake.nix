@@ -9,6 +9,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     seanime.url = "github:rishabh5321/seanime-flake";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: {
@@ -17,6 +25,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
+	./noctalia.nix
 	home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -24,6 +33,7 @@
             useUserPackages = true;
 	    extraSpecialArgs = { inherit inputs; };
             users.kaiden = import ./home.nix;
+            backupFileExtension = "backup";
           };
         }
 

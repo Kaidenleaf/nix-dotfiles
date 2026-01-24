@@ -8,6 +8,7 @@ let
 in 
 {
   programs.zsh.enable = true;
+  programs.hyprland.enable = true;
   environment.systemPackages = with pkgs; [
     unstable.vscode
     appimage-run
@@ -23,6 +24,8 @@ in
     distrobox
     homebank
     ffmpeg
+    inputs.quickshell.packages.${pkgs.system}.default
+    wofi
   ];
 }
 
