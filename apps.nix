@@ -26,6 +26,7 @@ in
     ffmpeg
     inputs.quickshell.packages.${pkgs.system}.default
     wofi
+    restic
   ];
 }
 
