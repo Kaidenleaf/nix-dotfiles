@@ -36,14 +36,20 @@ in
     package = unstable.tailscale;
   };
 
+  services.flatpak.remotes = [
+    { name = "dolphin-emu"; location = "https://flatpak.dolphin-emu.org/releases.flatpakrepo"; }
+    { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
+  ];
+
   services.flatpak.packages = [
     "com.spotify.Client"
     "org.prismlauncher.PrismLauncher"
     "md.obsidian.Obsidian"
     "it.mijorus.gearlever"
     "com.chatterino.chatterino"
-    #"io.github.astralvixen.geforce-infinity"
+    "io.github.astralvixen.geforce-infinity"
     "app.zen_browser.zen"
+    { appId = "org.DolphinEmu.dolphin-emu"; origin = "dolphin-emu"; }
   ];
 }
 
