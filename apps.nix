@@ -7,6 +7,7 @@ let
   };
 in 
 {
+  programs.localsend.enable = true;
   programs.zsh.enable = true;
   programs.hyprland.enable = true;
   environment.systemPackages = with pkgs; [
@@ -27,6 +28,22 @@ in
     inputs.quickshell.packages.${pkgs.system}.default
     wofi
     restic
+    ryubing
+  ];
+
+  services.tailscale = {
+    enable = true;
+    package = unstable.tailscale;
+  };
+
+  services.flatpak.packages = [
+    "com.spotify.Client"
+    "org.prismlauncher.PrismLauncher"
+    "md.obsidian.Obsidian"
+    "it.mijorus.gearlever"
+    "com.chatterino.chatterino"
+    #"io.github.astralvixen.geforce-infinity"
+    "app.zen_browser.zen"
   ];
 }
 
