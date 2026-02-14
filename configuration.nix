@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./apps.nix
       ./filesystem.nix
+      ./restic.nix
     ];
 
   # Bootloader.
@@ -108,6 +109,7 @@
     noto-fonts-cjk-serif
     inter
     liberation_ttf
+    maple-mono.NF-unhinted
   ];
   fonts.fontDir.enable = true;
   
@@ -135,7 +137,6 @@
     allowedTCPPorts = [ 8096 43211 ]; # 8096 (HTTP), 8920 (HTTPS opcional)
   };
   
-  services.tailscale.enable = true;
   programs.nix-ld.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
