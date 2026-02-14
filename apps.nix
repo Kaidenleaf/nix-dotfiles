@@ -25,7 +25,7 @@ in
     distrobox
     homebank
     ffmpeg
-    inputs.quickshell.packages.${pkgs.system}.default
+    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
     wofi
     restic
     ryubing
@@ -49,6 +49,9 @@ in
     "com.chatterino.chatterino"
     "io.github.astralvixen.geforce-infinity"
     "app.zen_browser.zen"
+    "org.musicbrainz.Picard"
+    "com.valvesoftware.Steam"
+    "com.stremio.Stremio"
     { appId = "org.DolphinEmu.dolphin-emu"; origin = "dolphin-emu"; }
   ];
 }
