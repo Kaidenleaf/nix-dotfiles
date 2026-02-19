@@ -20,15 +20,16 @@ in
     ghostty
     libreoffice-qt-fresh
     oh-my-posh
-    direnv
-    nix-direnv
     distrobox
-    homebank
     ffmpeg
     inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
     wofi
     restic
     ryubing
+    unstable.winboat
+    pnpm
+    nodejs
+    unstable.equibop
   ];
 
   services.tailscale = {
@@ -53,6 +54,7 @@ in
     "com.valvesoftware.Steam"
     "com.stremio.Stremio"
     { appId = "org.DolphinEmu.dolphin-emu"; origin = "dolphin-emu"; }
+    "com.usebottles.bottles"
   ];
 }
 
