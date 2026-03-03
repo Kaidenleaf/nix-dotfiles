@@ -11,6 +11,7 @@
       ./apps.nix
       ./filesystem.nix
       ./restic.nix
+      ./rclone.nix
     ];
 
   # Bootloader.
@@ -136,6 +137,8 @@
     enable = true;
     allowedTCPPorts = [ 8096 43211 ]; # 8096 (HTTP), 8920 (HTTPS opcional)
   };
+
+  programs.fuse.userAllowOther = true;
   
   programs.nix-ld.enable = true;
   # Some programs need SUID wrappers, can be configured further or are

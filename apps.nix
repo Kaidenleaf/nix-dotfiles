@@ -11,11 +11,9 @@ in
   programs.zsh.enable = true;
   programs.hyprland.enable = true;
   environment.systemPackages = with pkgs; [
-    unstable.vscode
     appimage-run
     qbittorrent
     mpv
-    kopia-ui
     neovim
     ghostty
     libreoffice-qt-fresh
@@ -26,10 +24,13 @@ in
     wofi
     restic
     ryubing
-    unstable.winboat
     pnpm
     nodejs
+    unstable.rclone
     unstable.equibop
+    unstable.winboat
+    unstable.vscode
+    unstable.brave
   ];
 
   services.tailscale = {
@@ -48,7 +49,6 @@ in
     "md.obsidian.Obsidian"
     "it.mijorus.gearlever"
     "com.chatterino.chatterino"
-    "io.github.astralvixen.geforce-infinity"
     "app.zen_browser.zen"
     "org.musicbrainz.Picard"
     "com.valvesoftware.Steam"
@@ -56,5 +56,14 @@ in
     { appId = "org.DolphinEmu.dolphin-emu"; origin = "dolphin-emu"; }
     "com.usebottles.bottles"
   ];
+
+  programs.obs-studio = {
+    enable = true;
+    package = unstable.obs-studio;
+    enableVirtualCamera = true;
+    plugins = with unstable.obs-studio-plugins; [
+      droidcam-obs
+    ];
+  };
 }
 
