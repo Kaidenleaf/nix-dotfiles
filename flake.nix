@@ -8,14 +8,6 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
@@ -25,7 +17,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
-	./noctalia.nix
 	nix-flatpak.nixosModules.nix-flatpak
 	home-manager.nixosModules.home-manager
         {

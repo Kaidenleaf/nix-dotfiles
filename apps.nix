@@ -20,7 +20,6 @@ in
     oh-my-posh
     distrobox
     ffmpeg
-    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
     wofi
     restic
     ryubing
@@ -31,6 +30,8 @@ in
     unstable.winboat
     unstable.vscode
     unstable.brave
+    unstable.droidcam
+
   ];
 
   services.tailscale = {
