@@ -66,5 +66,14 @@ in
       droidcam-obs
     ];
   };
+
+  services.syncthing = {
+    enable = true;
+    user = "kaiden";
+    group = "users";
+    dataDir = "/home/kaiden/Sync"; 
+    configDir = "/home/kaiden/.config/syncthing";
+    openDefaultPorts = true;
+  };
 }
 
