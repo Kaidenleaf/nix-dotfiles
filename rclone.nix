@@ -32,4 +32,25 @@
       Environment = [ "PATH=/run/wrappers/bin:$PATH" ];
     };
   };
+
+  # Backup local file to filen
+  systemd.services.rclone-sync-backup = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "kaiden";
+      ExecStart = "/run/current-system/sw/bin/rclone copy /home/kaiden/Documents/Omnisync filenremote:Omnisync --config /home/kaiden/.config/rclone/rclone.conf";
+    };
+  };
+
+  systemd.timers.rclone-sync-backup = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "5m";
+      OnUnitActiveSec = "15m";
+      Unit = "rclone-sync-backup.service";
+    };
+  };
 }
