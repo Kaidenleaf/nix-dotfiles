@@ -64,6 +64,7 @@ in
     enableVirtualCamera = true;
     plugins = with unstable.obs-studio-plugins; [
       droidcam-obs
+      obs-pipewire-audio-capture
     ];
   };
 
