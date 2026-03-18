@@ -37,7 +37,6 @@
   systemd.services.rclone-sync-backup = {
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
       User = "kaiden";
@@ -51,6 +50,7 @@
       OnBootSec = "5m";
       OnUnitActiveSec = "15m";
       Unit = "rclone-sync-backup.service";
+      Persistent = true;
     };
   };
 }
