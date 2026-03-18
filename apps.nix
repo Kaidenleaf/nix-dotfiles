@@ -31,7 +31,7 @@ in
     unstable.vscode
     unstable.brave
     unstable.droidcam
-
+    unstable.linux-wallpaperengine
   ];
 
   services.tailscale = {
