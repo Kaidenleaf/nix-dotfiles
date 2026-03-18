@@ -98,8 +98,10 @@
     shell = pkgs.zsh;
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
+  # OpenTabletDriver
+  hardware.opentabletdriver.enable = true;
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -141,6 +143,8 @@
   programs.fuse.userAllowOther = true;
   
   programs.nix-ld.enable = true;
+  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
