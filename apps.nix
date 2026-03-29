@@ -27,11 +27,11 @@ in
     nodejs
     unstable.rclone
     unstable.equibop
-    unstable.winboat
     unstable.vscode
     unstable.brave
     unstable.droidcam
     unstable.linux-wallpaperengine
+    unstable.easyeffects
   ];
 
   services.tailscale = {
