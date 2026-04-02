@@ -12,6 +12,7 @@
       ./filesystem.nix
       ./restic.nix
       ./rclone.nix
+      modules/nixos/stylix.nix
     ];
 
   # Bootloader.
@@ -143,6 +144,11 @@
   programs.fuse.userAllowOther = true;
   
   programs.nix-ld.enable = true;
+  hardware.graphics = {
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
+  };
   
 
   # Some programs need SUID wrappers, can be configured further or are

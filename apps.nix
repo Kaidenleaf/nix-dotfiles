@@ -7,9 +7,19 @@ let
   };
 in 
 {
+  imports = [
+    inputs.dms.nixosModules.dank-material-shell
+  ];
   programs.localsend.enable = true;
   programs.zsh.enable = true;
   programs.hyprland.enable = true;
+  
+  programs.niri.enable = true;
+  programs.dank-material-shell = {
+    enable = true;
+    dgop.package = unstable.dgop;
+  };
+
   environment.systemPackages = with pkgs; [
     appimage-run
     qbittorrent
@@ -32,6 +42,9 @@ in
     unstable.droidcam
     unstable.linux-wallpaperengine
     unstable.easyeffects
+    unstable.xwayland-satellite
+    fuzzel
+    unstable.davinci-resolve
   ];
 
   services.tailscale = {
@@ -76,5 +89,7 @@ in
     configDir = "/home/kaiden/.config/syncthing";
     openDefaultPorts = true;
   };
+
+  services.gnome.gnome-keyring.enable = true;
 }
 
