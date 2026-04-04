@@ -35,6 +35,7 @@ in
     ryubing
     pnpm
     nodejs
+    nautilus
     unstable.rclone
     unstable.equibop
     unstable.vscode
@@ -44,7 +45,6 @@ in
     unstable.easyeffects
     unstable.xwayland-satellite
     fuzzel
-    unstable.davinci-resolve
   ];
 
   services.tailscale = {

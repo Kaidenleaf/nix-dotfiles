@@ -10,11 +10,13 @@
       size = 24;
     };
     fonts = {
-      sizes.desktop = 12;
+      sizes.desktop = 10;
+      sizes.applications = 10;
       sansSerif = {
         package = pkgs.texlivePackages.nunito;
         name = "Nunito";
       };
     };
+    targets.qt.enable = false;
   };
 }
