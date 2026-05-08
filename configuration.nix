@@ -69,8 +69,11 @@
   programs.gamemode.enable = true;
   hardware.steam-hardware.enable = true;
 
+  services.udisks2.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.gutenprint ];
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -115,6 +118,7 @@
     liberation_ttf
     maple-mono.NF-unhinted
   ];
+  fonts.enableDefaultPackages = true;
   fonts.fontDir.enable = true;
   
   nix.settings.experimental-features = [ "nix-command" "flakes"];

@@ -34,7 +34,7 @@
             useUserPackages = true;
 	          extraSpecialArgs = { inherit inputs; };
             users.kaiden = import ./home.nix;
-            backupFileExtension = "backup";
+            backupFileExtension = "bakup";
           };
         }
 

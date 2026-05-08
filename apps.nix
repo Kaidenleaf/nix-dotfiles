@@ -21,6 +21,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    udiskie
     appimage-run
     qbittorrent
     mpv
@@ -45,6 +46,7 @@ in
     unstable.easyeffects
     unstable.xwayland-satellite
     fuzzel
+    kdePackages.qtstyleplugin-kvantum
   ];
 
   services.tailscale = {
