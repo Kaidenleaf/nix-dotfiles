@@ -17,9 +17,13 @@
       url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, stylix, hjem, ... }@inputs: {
     nixosConfigurations.zenith = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -27,6 +31,7 @@
         ./configuration.nix
 	      nix-flatpak.nixosModules.nix-flatpak
         stylix.nixosModules.stylix
+        #hjem.nixosModules.default
 	      home-manager.nixosModules.home-manager
         {
           home-manager = {

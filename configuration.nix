@@ -13,8 +13,6 @@
       ./restic.nix
       ./rclone.nix
       modules/nixos/stylix.nix
-      ./ghostty.nix
-      ./xdg-compat.nix
     ];
 
   # Bootloader.

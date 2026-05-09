@@ -2,7 +2,7 @@
   lib,
   ...
 }: let
-  configFile = "ghostty/config2";
+  configFile = "ghostty/config";
 in { 
   xdg.configFile."${configFile}" = {
     text = ''
@@ -19,6 +19,5 @@ in {
         window-decoration = "none";
       }}
   '';
-  mutable = true;
   };
 }
