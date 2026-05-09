@@ -12,9 +12,12 @@ in
   ];
   programs.localsend.enable = true;
   programs.zsh.enable = true;
-  programs.hyprland.enable = true;
-  
-  programs.niri.enable = true;
+    
+  programs.niri = {
+    enable = true;
+    package = unstable.niri;
+  };
+
   programs.dank-material-shell = {
     enable = true;
     dgop.package = unstable.dgop;
