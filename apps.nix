@@ -32,9 +32,7 @@ in
     ghostty
     libreoffice-qt-fresh
     oh-my-posh
-    distrobox
     ffmpeg
-    wofi
     restic
     ryubing
     pnpm
@@ -48,8 +46,7 @@ in
     unstable.linux-wallpaperengine
     unstable.easyeffects
     unstable.xwayland-satellite
-    fuzzel
-    kdePackages.qtstyleplugin-kvantum
+    unstable.vicinae
   ];
 
   services.tailscale = {

@@ -1,0 +1,96 @@
+#: schema: https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 4
+final_space = true
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+enable_cursor_positioning = true
+
+[palette]
+  blue = '#89B4FA'
+  closer = 'p:os'
+  lavender = '#B4BEFE'
+  os = '#ACB0BE'
+  pink = '#F5C2E7'
+
+[[blocks]]
+  alignment = 'left'
+  type = 'prompt'
+  newline = true
+
+  [[blocks.segments]]
+    foreground = 'p:blue'
+    style = 'plain'
+    template = '{{ .UserName }}@{{ .HostName }} '
+    type = 'session'
+
+  [[blocks.segments]]
+    foreground = 'p:pink'
+    style = 'plain'
+    template = '{{ .Path }} '
+    type = 'path'
+
+    [blocks.segments.options]
+      folder_icon = '....'
+      home_icon = '~'
+      style = 'agnoster_short'
+
+  [[blocks.segments]]
+    foreground = 'p:lavender'
+    style = 'plain'
+    template = '{{ .HEAD }} '
+    type = 'git'
+
+    [blocks.segments.options]
+      branch_icon = ' '
+      cherry_pick_icon = ' '
+      commit_icon = ' '
+      fetch_status = false
+      fetch_upstream_icon = false
+      merge_icon = ' '
+      no_commits_icon = ' '
+      rebase_icon = ' '
+      revert_icon = ' '
+      tag_icon = ' '
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground_templates = [
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}magenta{{end}}",
+    ]
+    background = 'transparent'
+    template = '❯'
+
+[[blocks]]
+  type = 'rprompt'
+
+  [[blocks.segments]]
+    "template" = "{{ if ne .Type \"unknown\" }}( {{ .Type }}){{ end }}"
+    foreground = 'p:blue'
+    background = 'transparent'
+    type = 'nix-shell'
+    style = 'plain'
+  
+  [[blocks.segments]]
+    type = "python"
+    invert_powerline = true
+    leading_diamond = "\ue0c5"
+    style = "diamond"
+    template = "  {{ .Full }} {{.Venv}}"
+    trailing_diamond = "\ue0c4"
+    foreground = "#ffd43b"
+    background = "#2B2B2B"
+
+[transient_prompt]
+  foreground_templates = [
+    "{{if gt .Code 0}}red{{end}}",
+    "{{if eq .Code 0}}magenta{{end}}",
+  ]
+  background = 'transparent'
+  template = '❯ '
