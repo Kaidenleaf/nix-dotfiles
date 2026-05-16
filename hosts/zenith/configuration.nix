@@ -8,11 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./apps.nix
+      ../../apps.nix
       ./filesystem.nix
-      ./restic.nix
-      ./rclone.nix
-      modules/nixos/stylix.nix
+      ../../restic.nix
+      ../../rclone.nix
+      ../../modules/nixos/stylix.nix
     ];
 
   # Bootloader.
@@ -126,9 +126,6 @@
   services.flatpak.enable = true;
   virtualisation.docker = {
     enable = true;
-    daemon.settings = {
-      dns = [ "1.1.1.1" "8.8.8.8" ];
-    };
   };
   
   programs.git = {
@@ -142,7 +139,7 @@
   zramSwap.enable = true;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 8096 43211 ]; # 8096 (HTTP), 8920 (HTTPS opcional)
+    allowedTCPPorts = [ 8096 43211 2283 ];
   };
 
   programs.fuse.userAllowOther = true;

@@ -7,20 +7,12 @@ let
   };
 in 
 {
-  imports = [
-    inputs.dms.nixosModules.dank-material-shell
-  ];
   programs.localsend.enable = true;
   programs.zsh.enable = true;
     
   programs.niri = {
     enable = true;
     package = unstable.niri;
-  };
-
-  programs.dank-material-shell = {
-    enable = true;
-    dgop.package = unstable.dgop;
   };
 
   environment.systemPackages = with pkgs; [
