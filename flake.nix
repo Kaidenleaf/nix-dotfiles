@@ -17,9 +17,10 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, stylix, ... } @ inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, stylix, agenix, ... } @ inputs: {
     nixosConfigurations.zenith = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -28,6 +29,7 @@
         nix-flatpak.nixosModules.nix-flatpak
         stylix.nixosModules.stylix
 	./noctalia.nix
+	agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager = {

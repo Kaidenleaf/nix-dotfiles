@@ -39,6 +39,7 @@ in
     unstable.easyeffects
     unstable.xwayland-satellite
     unstable.vicinae
+    inputs.agenix.packages.${stdenv.hostPlatform.system}.default
   ];
 
   services.tailscale = {

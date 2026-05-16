@@ -1,12 +1,14 @@
 { config, pkgs, ... }:
 
 {
+  age.secrets.restic-password.file = ./secrets/restic-password.age;
+  age.secrets.restic-env.file      = ./secrets/restic-env.age;
+
   services.restic.backups = {
     remoteBackup = {
       # Configuración del repositorio
-      repository = "s3:s3.us-east-005.backblazeb2.com/backups-kn";
-      passwordFile = "/home/kaiden/Documents/restic-password";
-      environmentFile = "/home/kaiden/Documents/restic-env";
+      passwordFile = config.age.secrets.restic-password.path;
+      environmentFile = config.age.secrets.restic-env.path;
 
       paths = [
         "/home/kaiden/datos/other"
