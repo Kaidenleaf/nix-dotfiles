@@ -66,8 +66,15 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   programs.gamemode.enable = true;
   hardware.steam-hardware.enable = true;
+  programs.gamescope = {
+    enable = true;
+  };
+  programs.steam = {
+    enable = true;
+  };
 
   services.udisks2.enable = true;
 
@@ -91,8 +98,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kaiden = {
@@ -105,7 +110,7 @@
   # OpenTabletDriver
   hardware.opentabletdriver.enable = true;
   hardware.uinput.enable = true;
-  boot.kernelModules = [ "uinput" ];
+  boot.kernelModules = [ "uinput" "ntsync" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -120,14 +125,14 @@
   ];
   fonts.enableDefaultPackages = true;
   fonts.fontDir.enable = true;
-  
+
   nix.settings.experimental-features = [ "nix-command" "flakes"];
-  
+
   services.flatpak.enable = true;
   virtualisation.docker = {
     enable = true;
   };
-  
+
   programs.git = {
     enable = true;
     config = {
@@ -143,14 +148,8 @@
   };
 
   programs.fuse.userAllowOther = true;
-  
+
   programs.nix-ld.enable = true;
-  hardware.graphics = {
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-    ];
-  };
-  
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

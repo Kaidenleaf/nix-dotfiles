@@ -1,15 +1,15 @@
 { pkgs, inputs, ... }:
 
-let 
+let
   unstable = import inputs.nixpkgs-unstable {
     system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
-in 
+in
 {
   programs.localsend.enable = true;
   programs.zsh.enable = true;
-    
+
   programs.niri = {
     enable = true;
     package = unstable.niri;
@@ -17,6 +17,7 @@ in
 
   environment.systemPackages = with pkgs; [
     udiskie
+    ntfs3g
     appimage-run
     qbittorrent
     mpv
@@ -30,6 +31,8 @@ in
     pnpm
     nodejs
     nautilus
+    distrobox
+    bibata-cursors
     unstable.rclone
     unstable.equibop
     unstable.vscode
@@ -39,6 +42,8 @@ in
     unstable.easyeffects
     unstable.xwayland-satellite
     unstable.vicinae
+    unstable.zed-editor
+    unstable.feishin
     inputs.agenix.packages.${stdenv.hostPlatform.system}.default
   ];
 
@@ -58,9 +63,7 @@ in
     "md.obsidian.Obsidian"
     "it.mijorus.gearlever"
     "com.chatterino.chatterino"
-    "app.zen_browser.zen"
     "org.musicbrainz.Picard"
-    "com.valvesoftware.Steam"
     "com.stremio.Stremio"
     { appId = "org.DolphinEmu.dolphin-emu"; origin = "dolphin-emu"; }
     "com.usebottles.bottles"
@@ -80,11 +83,10 @@ in
     enable = true;
     user = "kaiden";
     group = "users";
-    dataDir = "/home/kaiden/Sync"; 
+    dataDir = "/home/kaiden/Sync";
     configDir = "/home/kaiden/.config/syncthing";
     openDefaultPorts = true;
   };
 
   services.gnome.gnome-keyring.enable = true;
 }
-

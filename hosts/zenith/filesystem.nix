@@ -6,4 +6,9 @@
     fsType = "ext4"; # O ntfs-3g, exfat, etc.
     options = [ "defaults" "user" "rw" "nofail" "noatime" ];
   };
+  fileSystems."/mnt/media" = {
+    device = "/dev/disk/by-uuid/897474d7-ac6e-4ae6-bcac-1465d8842e3a";
+    fsType = "ext4";
+    options = ["users" "rw" "nofail" "noatime" ];
+  };
 }
