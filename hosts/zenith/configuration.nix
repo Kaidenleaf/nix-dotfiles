@@ -69,9 +69,6 @@
   hardware.graphics.enable32Bit = true;
   programs.gamemode.enable = true;
   hardware.steam-hardware.enable = true;
-  programs.gamescope = {
-    enable = true;
-  };
   programs.steam = {
     enable = true;
   };
@@ -144,7 +141,8 @@
   zramSwap.enable = true;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 8096 43211 2283 ];
+    allowedTCPPorts = [ 43211 47984 47989 47990 48010 ];
+    allowedUDPPorts = [ 47998 47999 48000 48002 48010 ];
   };
 
   programs.fuse.userAllowOther = true;

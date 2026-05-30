@@ -18,6 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
+    helium-nix.url = "github:penal-colony/helium-nix";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, stylix, agenix, ... } @ inputs: {
@@ -25,11 +26,12 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        ./ollama.nix
         ./hosts/zenith/configuration.nix
         nix-flatpak.nixosModules.nix-flatpak
         stylix.nixosModules.stylix
-	./noctalia.nix
-	agenix.nixosModules.default
+	    ./noctalia.nix
+	    agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -39,6 +41,12 @@
             users.kaiden = import ./hosts/zenith/home.nix;
             backupFileExtension = "backup";
           };
+        }
+        {
+	    nix.settings = {
+	        extra-substituters = [ "https://helium-nix.cachix.org" ];
+	        extra-trusted-public-keys = [ "helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw=" ];
+	    };
         }
 
       ];

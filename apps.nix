@@ -9,7 +9,6 @@ in
 {
   programs.localsend.enable = true;
   programs.zsh.enable = true;
-
   programs.niri = {
     enable = true;
     package = unstable.niri;
@@ -33,6 +32,10 @@ in
     nautilus
     distrobox
     bibata-cursors
+    yt-dlp
+    uv
+    borgbackup
+    chatterino7
     unstable.rclone
     unstable.equibop
     unstable.vscode
@@ -45,6 +48,7 @@ in
     unstable.zed-editor
     unstable.feishin
     inputs.agenix.packages.${stdenv.hostPlatform.system}.default
+    inputs.helium-nix.packages.${stdenv.hostPlatform.system}.helium
   ];
 
   services.tailscale = {
@@ -53,7 +57,6 @@ in
   };
 
   services.flatpak.remotes = [
-    { name = "dolphin-emu"; location = "https://flatpak.dolphin-emu.org/releases.flatpakrepo"; }
     { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
   ];
 
@@ -62,11 +65,14 @@ in
     "org.prismlauncher.PrismLauncher"
     "md.obsidian.Obsidian"
     "it.mijorus.gearlever"
-    "com.chatterino.chatterino"
     "org.musicbrainz.Picard"
     "com.stremio.Stremio"
-    { appId = "org.DolphinEmu.dolphin-emu"; origin = "dolphin-emu"; }
+    "org.DolphinEmu.dolphin-emu"
     "com.usebottles.bottles"
+    "com.bitwarden.desktop"
+    "com.github.tchx84.Flatseal"
+    "org.keepassxc.KeePassXC"
+    "dev.lizardbyte.app.Sunshine"
   ];
 
   programs.obs-studio = {

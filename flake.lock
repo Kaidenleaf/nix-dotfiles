@@ -183,6 +183,24 @@
         "type": "gitlab"
       }
     },
+    "helium-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1779695465,
+        "narHash": "sha256-PLUPFV5zMO0T+hXwlhuOh6gzhtb/YrfkiU0a6MXLBZI=",
+        "owner": "penal-colony",
+        "repo": "helium-nix",
+        "rev": "73229f6c6a7a1fdba3d358a062e33021bb1907e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "penal-colony",
+        "repo": "helium-nix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -275,6 +293,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1777578337,
+        "narHash": "sha256-Ad49moKWeXtKBJNy2ebiTQUEgdLyvGmTeykAQ9xM+Z4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "15f4ee454b1dce334612fa6843b3e05cf546efab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1779622335,
         "narHash": "sha256-ViA62qtL5za7V3d5I8OA9q9JcFhsVAiL5jVHwEclWqk=",
         "owner": "nixos",
@@ -361,9 +395,10 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "helium-nix": "helium-nix",
         "home-manager": "home-manager_2",
         "nix-flatpak": "nix-flatpak",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
         "stylix": "stylix"
