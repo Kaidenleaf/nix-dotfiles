@@ -72,6 +72,7 @@
   programs.steam = {
     enable = true;
   };
+  programs.gamescope.enable = true;
 
   services.udisks2.enable = true;
 
@@ -119,6 +120,9 @@
     inter
     liberation_ttf
     maple-mono.NF-unhinted
+    rubik
+    nunito
+    nunito-sans
   ];
   fonts.enableDefaultPackages = true;
   fonts.fontDir.enable = true;

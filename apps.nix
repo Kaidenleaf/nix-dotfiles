@@ -5,6 +5,13 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
   };
+  nur = import inputs.nur {
+    nurpkgs = pkgs;
+    pkgs = import inputs.nixpkgs {
+      system = pkgs.stdenv.hostPlatform.system;
+      config.allowUnfree = true;
+    };
+  };
 in
 {
   programs.localsend.enable = true;
@@ -13,11 +20,19 @@ in
     enable = true;
     package = unstable.niri;
   };
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+  programs.appimage.package = pkgs.appimage-run.override {
+    extraPkgs = pkgs: [
+      pkgs.icu
+    ]; 
+  };
 
   environment.systemPackages = with pkgs; [
     udiskie
     ntfs3g
-    appimage-run
     qbittorrent
     mpv
     neovim
@@ -36,10 +51,13 @@ in
     uv
     borgbackup
     chatterino7
+    nil
+    nixd
+    protonup-qt
+    gpu-screen-recorder
     unstable.rclone
     unstable.equibop
     unstable.vscode
-    unstable.brave
     unstable.droidcam
     unstable.linux-wallpaperengine
     unstable.easyeffects
@@ -48,7 +66,7 @@ in
     unstable.zed-editor
     unstable.feishin
     inputs.agenix.packages.${stdenv.hostPlatform.system}.default
-    inputs.helium-nix.packages.${stdenv.hostPlatform.system}.helium
+    (nur.repos.Ev357.helium.override { enableWideVine = true; })
   ];
 
   services.tailscale = {
@@ -57,7 +75,10 @@ in
   };
 
   services.flatpak.remotes = [
-    { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
+    {
+      name = "flathub";
+      location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    }
   ];
 
   services.flatpak.packages = [

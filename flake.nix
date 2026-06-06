@@ -14,42 +14,62 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:noctalia-dev/noctalia-shell/v5";
     };
     agenix.url = "github:ryantm/agenix";
     helium-nix.url = "github:penal-colony/helium-nix";
-  };
-
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, stylix, agenix, ... } @ inputs: {
-    nixosConfigurations.zenith = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./ollama.nix
-        ./hosts/zenith/configuration.nix
-        nix-flatpak.nixosModules.nix-flatpak
-        stylix.nixosModules.stylix
-	    ./noctalia.nix
-	    agenix.nixosModules.default
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = { inherit inputs; };
-            users.kaiden = import ./hosts/zenith/home.nix;
-            backupFileExtension = "backup";
-          };
-        }
-        {
-	    nix.settings = {
-	        extra-substituters = [ "https://helium-nix.cachix.org" ];
-	        extra-trusted-public-keys = [ "helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw=" ];
-	    };
-        }
-
-      ];
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      nix-flatpak,
+      stylix,
+      agenix,
+      nur,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations.zenith = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./ollama.nix
+          ./hosts/zenith/configuration.nix
+          nix-flatpak.nixosModules.nix-flatpak
+          stylix.nixosModules.stylix
+          ./noctalia.nix
+          agenix.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              users.kaiden = import ./hosts/zenith/home.nix;
+              backupFileExtension = "backup";
+            };
+          }
+          {
+            nix.settings = {
+              extra-substituters = [
+                "https://helium-nix.cachix.org"
+                "https://noctalia.cachix.org"
+              ];
+              extra-trusted-public-keys = [
+                "helium-nix.cachix.org-1:a8YPjt9O4GPyX0u3gjg/aWpb14teU9aRiSG/MOaSFgw="
+                "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+              ];
+            };
+          }
+        ];
+      };
+    };
 }

@@ -1,8 +1,7 @@
 font-family = Maple Mono NF
-theme = TokyoNight Night
+theme = noctalia
 font-size = 10
-background-opacity = 0.9
+background-opacity = 0.5
 background-blur = true
 window-padding-x = 10
 window-padding-y = 15
-
