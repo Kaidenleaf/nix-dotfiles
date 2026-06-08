@@ -5,15 +5,15 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../apps.nix
-      ./filesystem.nix
-      ../../restic.nix
-      ../../rclone.nix
-      ../../modules/nixos/stylix.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../apps.nix
+    ./filesystem.nix
+    ../../restic.nix
+    ../../rclone.nix
+    ../../modules/nixos/stylix.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -83,32 +83,38 @@
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  #   # If you want to use JACK applications, uncomment this
+  #   #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
+  #   # use the example session manager (no others are packaged yet so this is enabled by default,
+  #   # no need to redefine it in your config for now)
+  #   #media-session.enable = true;
+  # };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kaiden = {
     isNormalUser = true;
     description = "kaiden";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.zsh;
   };
 
   # OpenTabletDriver
   hardware.opentabletdriver.enable = true;
   hardware.uinput.enable = true;
-  boot.kernelModules = [ "uinput" "ntsync" ];
+  boot.kernelModules = [
+    "uinput"
+    "ntsync"
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -127,7 +133,10 @@
   fonts.enableDefaultPackages = true;
   fonts.fontDir.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   services.flatpak.enable = true;
   virtualisation.docker = {
@@ -145,8 +154,21 @@
   zramSwap.enable = true;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 43211 47984 47989 47990 48010 ];
-    allowedUDPPorts = [ 47998 47999 48000 48002 48010 ];
+    allowedTCPPorts = [
+      80
+      443
+      47984
+      47989
+      47990
+      48010
+    ];
+    allowedUDPPorts = [
+      47998
+      47999
+      48000
+      48002
+      48010
+    ];
   };
 
   programs.fuse.userAllowOther = true;
@@ -173,7 +195,6 @@
       }
     ];
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

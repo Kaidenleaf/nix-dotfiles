@@ -27,7 +27,7 @@ in
   programs.appimage.package = pkgs.appimage-run.override {
     extraPkgs = pkgs: [
       pkgs.icu
-    ]; 
+    ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -55,6 +55,7 @@ in
     nixd
     protonup-qt
     gpu-screen-recorder
+    lsp-plugins
     unstable.rclone
     unstable.equibop
     unstable.vscode
@@ -117,4 +118,374 @@ in
 
   services.gnome.gnome-keyring.enable = true;
   services.gvfs.enable = true;
+  services.caddy = {
+    enable = true;
+    package = pkgs.caddy.withPlugins {
+      plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
+      hash = "sha256-bzMqxWTqrJ1skZmRTXyEMCKStXpljbqe5r0Ve2cnBfM=";
+    };
+    configFile = "/etc/caddy/Caddyfile";
+  };
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+
+  services.pipewire.extraConfig.pipewire."98-limits" = {
+    "context.properties" = {
+      "link.max-buffers" = 64;
+    };
+  };
+
+  services.pipewire.extraConfig.pipewire."99-virtual-surround" = {
+    "context.modules" = [
+      {
+        name = "libpipewire-module-filter-chain";
+        flags = [ "nofail" ];
+        args = {
+          "node.description" = "Virtual Surround Sink";
+          "media.name" = "Virtual Surround Sink";
+          "filter.graph" = {
+            nodes = [
+              {
+                type = "builtin";
+                label = "copy";
+                name = "copyFL";
+              }
+              {
+                type = "builtin";
+                label = "copy";
+                name = "copyFR";
+              }
+              {
+                type = "builtin";
+                label = "copy";
+                name = "copyFC";
+              }
+              {
+                type = "builtin";
+                label = "copy";
+                name = "copyRL";
+              }
+              {
+                type = "builtin";
+                label = "copy";
+                name = "copyRR";
+              }
+              {
+                type = "builtin";
+                label = "copy";
+                name = "copySL";
+              }
+              {
+                type = "builtin";
+                label = "copy";
+                name = "copySR";
+              }
+              {
+                type = "builtin";
+                label = "copy";
+                name = "copyLFE";
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFL_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 0;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFL_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 1;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convSL_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 2;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convSL_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 3;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convRL_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 4;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convRL_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 5;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFC_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 6;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFC_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 7;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convRR_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 8;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convRR_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 9;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFR_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 10;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFR_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 11;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convSR_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 12;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convSR_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 13;
+                };
+              }
+              {
+                type = "builtin";
+                label = "mixer";
+                name = "mixL";
+              }
+              {
+                type = "builtin";
+                label = "mixer";
+                name = "mixR";
+              }
+            ];
+            links = [
+              {
+                output = "copyFL:Out";
+                input = "convFL_L:In";
+              }
+              {
+                output = "copyFL:Out";
+                input = "convFL_R:In";
+              }
+              {
+                output = "copySL:Out";
+                input = "convSL_L:In";
+              }
+              {
+                output = "copySL:Out";
+                input = "convSL_R:In";
+              }
+              {
+                output = "copyRL:Out";
+                input = "convRL_L:In";
+              }
+              {
+                output = "copyRL:Out";
+                input = "convRL_R:In";
+              }
+              {
+                output = "copyFC:Out";
+                input = "convFC_L:In";
+              }
+              {
+                output = "copyFC:Out";
+                input = "convFC_R:In";
+              }
+              {
+                output = "copyRR:Out";
+                input = "convRR_L:In";
+              }
+              {
+                output = "copyRR:Out";
+                input = "convRR_R:In";
+              }
+              {
+                output = "copyFR:Out";
+                input = "convFR_L:In";
+              }
+              {
+                output = "copyFR:Out";
+                input = "convFR_R:In";
+              }
+              {
+                output = "copySR:Out";
+                input = "convSR_L:In";
+              }
+              {
+                output = "copySR:Out";
+                input = "convSR_R:In";
+              }
+              {
+                output = "convFL_L:Out";
+                input = "mixL:In 1";
+              }
+              {
+                output = "convFL_R:Out";
+                input = "mixR:In 1";
+              }
+              {
+                output = "convSL_L:Out";
+                input = "mixL:In 2";
+              }
+              {
+                output = "convSL_R:Out";
+                input = "mixR:In 2";
+              }
+              {
+                output = "convRL_L:Out";
+                input = "mixL:In 3";
+              }
+              {
+                output = "convRL_R:Out";
+                input = "mixR:In 3";
+              }
+              {
+                output = "convFC_L:Out";
+                input = "mixL:In 4";
+              }
+              {
+                output = "convFC_R:Out";
+                input = "mixR:In 4";
+              }
+              {
+                output = "convRR_L:Out";
+                input = "mixL:In 5";
+              }
+              {
+                output = "convRR_R:Out";
+                input = "mixR:In 5";
+              }
+              {
+                output = "convFR_L:Out";
+                input = "mixL:In 6";
+              }
+              {
+                output = "convFR_R:Out";
+                input = "mixR:In 6";
+              }
+              {
+                output = "convSR_L:Out";
+                input = "mixL:In 7";
+              }
+              {
+                output = "convSR_R:Out";
+                input = "mixR:In 7";
+              }
+            ];
+            inputs = [
+              "copyFL:In"
+              "copyFR:In"
+              "copyFC:In"
+              "copyLFE:In"
+              "copyRL:In"
+              "copyRR:In"
+              "copySL:In"
+              "copySR:In"
+            ];
+            outputs = [
+              "mixL:Out"
+              "mixR:Out"
+            ];
+          };
+          "capture.props" = {
+            "node.name" = "effect_input.virtual-surround-7.1";
+            "media.class" = "Audio/Sink";
+            "audio.channels" = 8;
+            "audio.position" = [
+              "FL"
+              "FR"
+              "FC"
+              "LFE"
+              "RL"
+              "RR"
+              "SL"
+              "SR"
+            ];
+          };
+          "playback.props" = {
+            "node.name" = "effect_output.virtual-surround-7.1";
+            "audio.channels" = 2;
+            "audio.position" = [
+              "FL"
+              "FR"
+            ];
+            "target.object" = "alsa_output.usb-Razer_Razer_Kraken_V3_X_00000000-00.analog-stereo";
+            "stream.dont-remix" = true;
+            "node.passive" = true;
+          };
+        };
+      }
+    ];
+  };
+
 }
