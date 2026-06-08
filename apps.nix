@@ -135,12 +135,6 @@ in
     jack.enable = true;
   };
 
-  services.pipewire.extraConfig.pipewire."98-limits" = {
-    "context.properties" = {
-      "link.max-buffers" = 64;
-    };
-  };
-
   services.pipewire.extraConfig.pipewire."99-virtual-surround" = {
     "context.modules" = [
       {
@@ -212,6 +206,60 @@ in
               {
                 type = "builtin";
                 label = "convolver";
+                name = "convFR_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 8;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFR_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 7;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFC_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 6;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convFC_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 13;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convLFE_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 6;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convLFE_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 13;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
                 name = "convSL_L";
                 config = {
                   filename = "/home/kaiden/.config/pipewire/atmos.wav";
@@ -225,6 +273,24 @@ in
                 config = {
                   filename = "/home/kaiden/.config/pipewire/atmos.wav";
                   channel = 3;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convSR_L";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 10;
+                };
+              }
+              {
+                type = "builtin";
+                label = "convolver";
+                name = "convSR_R";
+                config = {
+                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
+                  channel = 9;
                 };
               }
               {
@@ -248,61 +314,7 @@ in
               {
                 type = "builtin";
                 label = "convolver";
-                name = "convFC_L";
-                config = {
-                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
-                  channel = 6;
-                };
-              }
-              {
-                type = "builtin";
-                label = "convolver";
-                name = "convFC_R";
-                config = {
-                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
-                  channel = 7;
-                };
-              }
-              {
-                type = "builtin";
-                label = "convolver";
                 name = "convRR_L";
-                config = {
-                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
-                  channel = 8;
-                };
-              }
-              {
-                type = "builtin";
-                label = "convolver";
-                name = "convRR_R";
-                config = {
-                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
-                  channel = 9;
-                };
-              }
-              {
-                type = "builtin";
-                label = "convolver";
-                name = "convFR_L";
-                config = {
-                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
-                  channel = 10;
-                };
-              }
-              {
-                type = "builtin";
-                label = "convolver";
-                name = "convFR_R";
-                config = {
-                  filename = "/home/kaiden/.config/pipewire/atmos.wav";
-                  channel = 11;
-                };
-              }
-              {
-                type = "builtin";
-                label = "convolver";
-                name = "convSR_L";
                 config = {
                   filename = "/home/kaiden/.config/pipewire/atmos.wav";
                   channel = 12;
@@ -311,10 +323,10 @@ in
               {
                 type = "builtin";
                 label = "convolver";
-                name = "convSR_R";
+                name = "convRR_R";
                 config = {
                   filename = "/home/kaiden/.config/pipewire/atmos.wav";
-                  channel = 13;
+                  channel = 11;
                 };
               }
               {
@@ -338,20 +350,12 @@ in
                 input = "convFL_R:In";
               }
               {
-                output = "copySL:Out";
-                input = "convSL_L:In";
+                output = "copyFR:Out";
+                input = "convFR_L:In";
               }
               {
-                output = "copySL:Out";
-                input = "convSL_R:In";
-              }
-              {
-                output = "copyRL:Out";
-                input = "convRL_L:In";
-              }
-              {
-                output = "copyRL:Out";
-                input = "convRL_R:In";
+                output = "copyFR:Out";
+                input = "convFR_R:In";
               }
               {
                 output = "copyFC:Out";
@@ -362,20 +366,20 @@ in
                 input = "convFC_R:In";
               }
               {
-                output = "copyRR:Out";
-                input = "convRR_L:In";
+                output = "copyLFE:Out";
+                input = "convLFE_L:In";
               }
               {
-                output = "copyRR:Out";
-                input = "convRR_R:In";
+                output = "copyLFE:Out";
+                input = "convLFE_R:In";
               }
               {
-                output = "copyFR:Out";
-                input = "convFR_L:In";
+                output = "copySL:Out";
+                input = "convSL_L:In";
               }
               {
-                output = "copyFR:Out";
-                input = "convFR_R:In";
+                output = "copySL:Out";
+                input = "convSL_R:In";
               }
               {
                 output = "copySR:Out";
@@ -384,6 +388,22 @@ in
               {
                 output = "copySR:Out";
                 input = "convSR_R:In";
+              }
+              {
+                output = "copyRL:Out";
+                input = "convRL_L:In";
+              }
+              {
+                output = "copyRL:Out";
+                input = "convRL_R:In";
+              }
+              {
+                output = "copyRR:Out";
+                input = "convRR_L:In";
+              }
+              {
+                output = "copyRR:Out";
+                input = "convRR_R:In";
               }
               {
                 output = "convFL_L:Out";
@@ -418,28 +438,36 @@ in
                 input = "mixR:In 4";
               }
               {
-                output = "convRR_L:Out";
+                output = "convFR_L:Out";
                 input = "mixL:In 5";
               }
               {
-                output = "convRR_R:Out";
+                output = "convFR_R:Out";
                 input = "mixR:In 5";
               }
               {
-                output = "convFR_L:Out";
+                output = "convSR_L:Out";
                 input = "mixL:In 6";
               }
               {
-                output = "convFR_R:Out";
+                output = "convSR_R:Out";
                 input = "mixR:In 6";
               }
               {
-                output = "convSR_L:Out";
+                output = "convRR_L:Out";
                 input = "mixL:In 7";
               }
               {
-                output = "convSR_R:Out";
+                output = "convRR_R:Out";
                 input = "mixR:In 7";
+              }
+              {
+                output = "convLFE_L:Out";
+                input = "mixL:In 8";
+              }
+              {
+                output = "convLFE_R:Out";
+                input = "mixR:In 8";
               }
             ];
             inputs = [
@@ -458,7 +486,7 @@ in
             ];
           };
           "capture.props" = {
-            "node.name" = "effect_input.virtual-surround-7.1";
+            "node.name" = "effect_input.virtual-surround-7.1-hesuvi";
             "media.class" = "Audio/Sink";
             "audio.channels" = 8;
             "audio.position" = [
@@ -473,15 +501,13 @@ in
             ];
           };
           "playback.props" = {
-            "node.name" = "effect_output.virtual-surround-7.1";
+            "node.name" = "effect_output.virtual-surround-7.1-hesuvi";
+            "node.passive" = true;
             "audio.channels" = 2;
             "audio.position" = [
               "FL"
               "FR"
             ];
-            "target.object" = "alsa_output.usb-Razer_Razer_Kraken_V3_X_00000000-00.analog-stereo";
-            "stream.dont-remix" = true;
-            "node.passive" = true;
           };
         };
       }
