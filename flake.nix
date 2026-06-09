@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v5";
+      url = "github:noctalia-dev/noctalia";
     };
     agenix.url = "github:ryantm/agenix";
     helium-nix.url = "github:penal-colony/helium-nix";

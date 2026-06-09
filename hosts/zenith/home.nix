@@ -1,4 +1,9 @@
-{ inputs, config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 let
   unstable = import inputs.nixpkgs-unstable {
     system = pkgs.stdenv.hostPlatform.system;
@@ -6,25 +11,25 @@ let
   };
 in
 {
-   home.stateVersion = "25.11";
-   imports = [
-   ];
-   xdg.configFile."ghostty" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/kaiden/nix-dotfiles/config/ghostty";
-      recursive = true;
-   };
+  home.stateVersion = "25.11";
+  imports = [
+  ];
+  xdg.configFile."ghostty" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/home/kaiden/nix-dotfiles/config/ghostty";
+    recursive = true;
+  };
 
-   xdg.configFile."ohmyposh" = {
-      source = config.lib.file.mkOutOfStoreSymlink "/home/kaiden/nix-dotfiles/config/ohmyposh";
-      recursive = true;
-   };
+  xdg.configFile."ohmyposh" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/home/kaiden/nix-dotfiles/config/ohmyposh";
+    recursive = true;
+  };
 
-   home.pointerCursor = {
-       gtk.enable = true;
-       package = pkgs.bibata-cursors;
-       name = "Bibata-Modern-Classic";
-       size = 24;
-     };
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+  };
 
   gtk = {
     enable = true;
@@ -51,8 +56,16 @@ in
   };
 
   dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
     };
+  };
+
+  services.mpd = {
+    enable = true;
+    musicDirectory = "/home/kaiden/datos/media/music";
+    # Optional:
+    network.listenAddress = "any"; # if you want to allow non-localhost connections
+    network.startWhenNeeded = true; # systemd feature: only start MPD service upon connection to its socket
+  };
 }
